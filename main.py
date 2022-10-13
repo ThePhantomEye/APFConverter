@@ -7,26 +7,29 @@ def encodeImage(image_path, text_path):
     while True:
         try:
             print("Enter the amount of lines to skip:")
-            BLOCK_HEIGHT = int(input())
-            break
+            block_height = int(input())
+            if 10 > block_height > 0:
+                break
+            else:
+                print("Please enter a value between 1 and 9")
         except ValueError:
-            print("Enter a fuckin' number you dryshite!")
+            print("Please enter a valid integer")
     width = image.size[0]
     height = image.size[1]
-    block_count = math.ceil(height / BLOCK_HEIGHT)
+    block_count = math.ceil(height / block_height)
 
     cursor_color = False
     cursor_value = 0
 
-    START_CHAR = " "
-    END_CHAR = "~"
+    min_char = " "
+    max_char = "~"
 
-    output = f"{width};{height};{BLOCK_HEIGHT};{START_CHAR};{END_CHAR}\n"
+    output = f"{width};{height};{block_height};{min_char};{max_char}\n"
 
-    for block_y in range(BLOCK_HEIGHT):
+    for block_y in range(block_height):
         for block_index in range(block_count):
             for x in range(width):
-                y = block_index * BLOCK_HEIGHT + block_y
+                y = block_index * block_height + block_y
                 if y >= height:
                     break
                 if x == 0 and y == 0:
@@ -34,16 +37,16 @@ def encodeImage(image_path, text_path):
 
                 color = bool(image.getpixel((x, y)) / 255)
 
-                if color == cursor_color and cursor_value < ord(END_CHAR) - ord(START_CHAR):
+                if color == cursor_color and cursor_value < ord(max_char) - ord(min_char):
                     cursor_value += 1
                 else:
-                    output += chr(ord(START_CHAR) + cursor_value)
+                    output += chr(ord(min_char) + cursor_value)
                     cursor_color = not cursor_color
                     cursor_value = 0
 
     image.close()
 
-    output += chr(ord(START_CHAR) + cursor_value)
+    output += chr(ord(min_char) + cursor_value)
 
     text_file = open(text_path, "w")
     text_file.write(output)
@@ -62,8 +65,8 @@ def decodeText(text_path, image_path):
     width = int(header[0])
     height = int(header[1])
     block_height = int(header[2])
-    start_char = ord(header[3])
-    end_char = ord(header[4])
+    min_char = ord(header[3])
+    max_char = ord(header[4])
 
     cursor_color = False
 
@@ -72,7 +75,7 @@ def decodeText(text_path, image_path):
     image = Image.new("1", (width, height))
 
     for char in content:
-        for count in range(ord(char) - start_char + 1):
+        for count in range(ord(char) - min_char + 1):
             x = pixel_index % width
 #           y = int((pixel_index - x) / width)  # to fix
             y = (pixel_index - x) // width

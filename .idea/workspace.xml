@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68cdc0bd-f16c-4ade-8634-f9feaf9b4f07" name="Changes" comment="Started rewriting">
-      <change afterPath="$PROJECT_DIR$/new.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/InformaticaPythonPlus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InformaticaPythonPlus.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="68cdc0bd-f16c-4ade-8634-f9feaf9b4f07" name="Changes" comment="Rewrite debugging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -81,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664199284597</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Rewrite debugging">
+      <created>1665409100535</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665409100535</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,14 +103,15 @@
     <MESSAGE value="Wrote encode code" />
     <MESSAGE value="Implemented single line scanning and encoding" />
     <MESSAGE value="Started rewriting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started rewriting" />
+    <MESSAGE value="Rewrite debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>100</line>
+          <line>103</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
