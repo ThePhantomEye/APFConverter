@@ -4,6 +4,8 @@ from PIL import Image
 def encodeImage(image_path, text_path):
     image = Image.open(image_path)
     image = image.convert("1")
+    block_height = 3
+    """
     while True:
         try:
             print("Enter the amount of lines to skip:")
@@ -14,6 +16,7 @@ def encodeImage(image_path, text_path):
                 print("Please enter a value between 1 and 9")
         except ValueError:
             print("Please enter a valid integer")
+    """
     width = image.size[0]
     height = image.size[1]
     block_count = math.ceil(height / block_height)
@@ -24,7 +27,7 @@ def encodeImage(image_path, text_path):
     min_char = " "
     max_char = "~"
 
-    output = f"{width};{height};{block_height};{min_char};{max_char}\n"
+    output = "APERTURE IMAGE FORMAT (c) 1985\n" + str(block_height) + "\n"
 
     for block_y in range(block_height):
         for block_index in range(block_count):
@@ -35,7 +38,14 @@ def encodeImage(image_path, text_path):
                 if x == 0 and y == 0:
                     pass
 
-                color = bool(image.getpixel((x, y)) / 255)
+                if x == 69 and block_index == 3:
+                    print("now")
+
+                print(image.getpixel((x, y)))
+                print(image.getpixel((x, y)) / 255)
+
+                print(x, height - y + 1)
+                color = bool(image.getpixel((x, height - y - 1)) / 255)
 
                 if color == cursor_color and cursor_value < ord(max_char) - ord(min_char):
                     cursor_value += 1
@@ -52,7 +62,7 @@ def encodeImage(image_path, text_path):
     text_file.write(output)
     text_file.close()
 
-
+"""
 def decodeText(text_path, image_path):
     text_file = open(text_path, "r")
     text = text_file.read()
@@ -89,10 +99,10 @@ def decodeText(text_path, image_path):
 
     image.save(image_path)
     image.close()
+"""
 
-
-encodeImage("test1.png", "test2.txt")
-decodeText("test2.txt", "test_bis.png")
+encodeImage("test1.png", "test3.apf")
+# decodeText("test2.txt", "test_bis.png")
 
 print(
     "\033[31;1m\033[38:5:4mOK\033[0m")  # Prints "OK" in bold blue font (see https://en.wikipedia.org/wiki/ANSI_escape_code)
