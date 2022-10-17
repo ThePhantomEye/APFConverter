@@ -21,6 +21,7 @@ def encodeImage(image_path, text_path):
     height = image.size[1]
     block_count = math.ceil(height / block_height)
 
+    colour = False
     cursor_color = False
     cursor_value = 0
 
@@ -38,7 +39,7 @@ def encodeImage(image_path, text_path):
                 if x == 0 and y == 0:
                     pass
 
-                if x == 69 and block_index == 3:
+                if x == 0 and block_index == 6:
                     print("now")
 
                 print(image.getpixel((x, y)))
@@ -46,7 +47,10 @@ def encodeImage(image_path, text_path):
 
                 print(x, height - y + 1)
                 color = bool(image.getpixel((x, height - y - 1)) / 255)
+                if colour != color:
+                    cursor_value += 1
 
+                colour = color
                 if color == cursor_color and cursor_value < ord(max_char) - ord(min_char):
                     cursor_value += 1
                 else:
@@ -101,7 +105,7 @@ def decodeText(text_path, image_path):
     image.close()
 """
 
-encodeImage("test1.png", "test3.apf")
+encodeImage("test1.png", "test9.apf")
 # decodeText("test2.txt", "test_bis.png")
 
 print(
