@@ -25,6 +25,7 @@ def encodeImage(image_path, text_path):
     cursor_color = False
     cursor_value = 0
 
+    x = 0
     min_char = " "
     max_char = "~"
 
@@ -32,27 +33,30 @@ def encodeImage(image_path, text_path):
 
     for block_y in range(block_height):
         for block_index in range(block_count):
-            for x in range(width):
+            for i in range(width):
                 y = block_index * block_height + block_y
                 if y >= height:
                     break
                 if x == 0 and y == 0:
                     pass
+                if x >= width:
+                    x = 0
 
-                if x == 0 and block_index == 6:
-                    print("now")
+                # if x == 0 and block_index == 6:
+                #     print("now")
 
-                print(image.getpixel((x, y)))
-                print(image.getpixel((x, y)) / 255)
+                # print(image.getpixel((x, y)))
+                # print(image.getpixel((x, y)) / 255)
 
-                print(x, height - y + 1)
+                # print(x, height - y + 1)
                 color = bool(image.getpixel((x, height - y - 1)) / 255)
-                if colour != color:
-                    cursor_value += 1
-
-                colour = color
+                # if colour != color:
+                #     cursor_value += 1
+                #
+                # colour = color
                 if color == cursor_color and cursor_value < ord(max_char) - ord(min_char):
                     cursor_value += 1
+                    x += 1
                 else:
                     output += chr(ord(min_char) + cursor_value)
                     cursor_color = not cursor_color
@@ -95,7 +99,7 @@ def decodeText(text_path, image_path):
             y = (pixel_index - x) // width
             if pixel_index >= width * height:
                 break
-
+ 
             image.putpixel((x, y), cursor_color * 255)
 
             pixel_index += 1
@@ -105,7 +109,7 @@ def decodeText(text_path, image_path):
     image.close()
 """
 
-encodeImage("test1.png", "test9.apf")
+encodeImage("test1.png", "test14.apf")
 # decodeText("test2.txt", "test_bis.png")
 
 print(
