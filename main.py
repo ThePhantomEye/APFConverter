@@ -117,7 +117,6 @@ def menu():
         else:
             print("\nInvalid choice. \nPlease choose between:\n  1) encode\n  2) decode\n  3) exit")
 
-
 # menu()
 encodeImage("image_original.png", "image_encoded.apf")
 decodeImage("image_encoded.apf", "image_decoded.png")
