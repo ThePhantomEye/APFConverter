@@ -60,9 +60,8 @@ def encodeImage(image_path, text_path):
                     x += 1
                 else:
                     output += chr(ord(min_char) + cursor_value)
-                    if
-                    # if output == "APERTURE IMAGE FORMAT (c) 1985\n3\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ i!'!~ ~ ~ 7%!%\"%#\"!\"\"\"%\"\"\"\"!#!%\"\"~ ~ g%!\"\"\"!\"#\"!\"!\"!\"%%\"\"\"\"!\"\"%~ ~ l#\"!!##!!\"#\"!!$####!!#\"#\"#~ ~ ~":
-                    #     print("wrong")
+                    if output == "APERTURE IMAGE FORMAT (c) 1985\n3\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ i!'!~ ~ ~ 7%!%\"%#\"!\"\"\"%\"\"\"\"!#!%\"\"~ ~ g%!\"\"\"!\"#\"!\"!\"!\"%%\"\"\"\"!\"\"%~ ~ l#\"!!##!!\"#\"!!$####!!#\"#\"#~ ~ ~":
+                        print("wrong")
                     cursor_color = not cursor_color
                     cursor_value = 0
 
