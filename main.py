@@ -101,9 +101,9 @@ def menu():
 
             while True:
                 print("Enter the file name of the image to encode:")  # define input_file
-                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
+                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\images\\" + input()
                 print("Enter the desired name of the output file:")  # define output_file
-                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
+                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\images\\" + input()
 
                 if Image.open(input_file).size != (320, 200):
                     print("The input image is not of required size (320x200).\nPlease try again.\n")
@@ -121,9 +121,9 @@ def menu():
 
             while True:
                 print("Enter the file name of the image to decode:")  # define input_file
-                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
+                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\images\\" + input()
                 print("Enter the desired name of the output image:")  # define output_file
-                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
+                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\images\\" + input()
                 try:
                     decode_image(input_file, output_file)  # decode image
 
