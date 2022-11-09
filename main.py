@@ -141,4 +141,4 @@ def menu():
 
 print("\nAPF Converter\n")
 while True:
-    menu()  # loads the menu in a loop that will only end if the user chooses to exit
+    menu()  # loads the menu in a loop that will only end if the user decides to exit
