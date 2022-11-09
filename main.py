@@ -1,4 +1,6 @@
 import math
+import sys
+import os
 from PIL import Image
 
 
@@ -99,9 +101,9 @@ def menu():
 
             while True:
                 print("Enter the file name of the image to encode:")  # define input_file
-                input_file = input()
+                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
                 print("Enter the desired name of the output file:")  # define output_file
-                output_file = input()
+                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
 
                 if Image.open(input_file).size != (320, 200):
                     print("The input image is not of required size (320x200).\nPlease try again.\n")
@@ -119,9 +121,9 @@ def menu():
 
             while True:
                 print("Enter the file name of the image to decode:")  # define input_file
-                input_file = input()
+                input_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
                 print("Enter the desired name of the output image:")  # define output_file
-                output_file = input()
+                output_file = os.path.split(os.path.abspath(sys.argv[0]))[0] + "\\" + input()
                 try:
                     decode_image(input_file, output_file)  # decode image
 
