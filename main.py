@@ -4,6 +4,7 @@ from PIL import Image
 def encodeImage(image_path, text_path):
     image = Image.open(image_path)
     image = image.convert("1")
+
     block_height = 3
     """
     while True:
@@ -59,6 +60,9 @@ def encodeImage(image_path, text_path):
                     x += 1
                 else:
                     output += chr(ord(min_char) + cursor_value)
+                    if
+                    # if output == "APERTURE IMAGE FORMAT (c) 1985\n3\n~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ i!'!~ ~ ~ 7%!%\"%#\"!\"\"\"%\"\"\"\"!#!%\"\"~ ~ g%!\"\"\"!\"#\"!\"!\"!\"%%\"\"\"\"!\"\"%~ ~ l#\"!!##!!\"#\"!!$####!!#\"#\"#~ ~ ~":
+                    #     print("wrong")
                     cursor_color = not cursor_color
                     cursor_value = 0
 
@@ -75,23 +79,16 @@ def decodeText(text_path, image_path):
     text_file = open(text_path, "r")
     text = text_file.read()
     text_file.close()
-
     header = text.split("\n")[0].split(";")
-
     content = text.split("\n")[1]
-
     width = int(header[0])
     height = int(header[1])
     block_height = int(header[2])
     min_char = ord(header[3])
     max_char = ord(header[4])
-
     cursor_color = False
-
     pixel_index = 0
-
     image = Image.new("1", (width, height))
-
     for char in content:
         for count in range(ord(char) - min_char + 1):
             x = pixel_index % width
@@ -101,100 +98,26 @@ def decodeText(text_path, image_path):
                 break
  
             image.putpixel((x, y), cursor_color * 255)
-
             pixel_index += 1
         cursor_color = not cursor_color
-
     image.save(image_path)
     image.close()
 """
 
-encodeImage("test1.png", "test14.apf")
-# decodeText("test2.txt", "test_bis.png")
-
-print(
-    "\033[31;1m\033[38:5:4mOK\033[0m")  # Prints "OK" in bold blue font (see https://en.wikipedia.org/wiki/ANSI_escape_code)
-
-
-
-"""
-
-from PIL import Image
-
-# print('Enter amount of skipped lines:')
-# skipamount = int(input())
-#
-# print('Enter input file name')
-# inputfile = input()
-
-skipamount = 3
-inputfile = "test1.png"
-
-color1 = (255, 255, 255, 255)
-color2 = (0, 0, 0, 255)
-
-data = "APERTURE IMAGE FORMAT (c) 1985\n" + str(skipamount) + "\n"
-
-im = Image.open(inputfile, "r")
-
-x = 0   #Should be 0
-y = 199 #Should be 199
-
-run = 0
-coordinate = x, y
-print(im.getpixel(coordinate))
-while x < 320 and run <= skipamount:
-    length = 0
-    loop = 0
-    while loop <= 93:
-
-        if -1 < x < 320 and run <= skipamount:
-
-            coordinate = x, y
-            print(coordinate) # remove
-            pixel = im.getpixel(coordinate)
-
-
-            if pixel == color2:
-                print('same ' + str(x) + str(coordinate)) # remove
-                length += 1
-                x += 1
-                loop += 1
-
-            elif pixel == color1:
-                print("TEST")
-                color1, color2 = color2, color1
-                print('different ' + str(x) + str(coordinate)) # remove
-                print(chr(length + 32)) # remove
-                break
-            else:
-                print('ERROR')
-
-
-        elif x < -1:
-            print('ERROR')
-
-        elif x >= 320:
-            if y >= skipamount:
-                y -= skipamount
-                x = 0
-
-            else:
-                run += 1
-                y = 199 - run
-                x = 0
-
-
-        elif run > skipamount:
-            print('hi')
+def menu():
+    while True:
+        option = input()
+        if option.upper() == 'ENCODE':
+            encodeImage("image_original.png", "image_encoded.apf")
+            print("\033[31;1m\033[38:5:4mOK\033[0m")
             break
-    if loop == 93:
-        color1, color2 = color2, color1
-        loop = 0
-        print("number" + str(length + 32))
+        elif option.upper() == 'DECODE':
+            decodeImage("image_encoded.apf", "image_decoded.png")
+            print("\033[31;1m\033[38:5:4mOK\033[0m")
+            break
+        elif option.upper() == 'EXIT':
+            exit
+        else:
+            print('Invalid choice. \n Please choose between: [encode], [decode], [exit]')
 
-    data += chr(length + 32)
-
-with open("output.apf", "w") as text_file:
-    text_file.write(data)
-"""
+menu()
