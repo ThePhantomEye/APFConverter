@@ -12,7 +12,7 @@ pip install pillow
 
 ## Usage
 
-Open `main.py` and enter:
+Run `Python main.py`, to run the program and enter:
 
 `1` to encode a .png file to .apf
 
@@ -25,3 +25,7 @@ Enter the file name of the original file, and the desired converted file.
 
 Demo images included are:
 `cake.png`, `text.png`, `quadraam.png`
+
+## Note
+
+The program currently only works on Windows devices.
