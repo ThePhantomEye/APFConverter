@@ -12,7 +12,7 @@ pip install pillow
 
 ## Usage
 
-Run `Python main.py`, to run the program and enter:
+Run `Python main.py` to run the program, and enter:
 
 `1` to encode a .png file to .apf
 
